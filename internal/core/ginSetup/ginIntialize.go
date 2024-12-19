@@ -2,7 +2,6 @@ package ginSetup
 
 import (
 	"net/http"
-	"sqlc-demo/internal/pkg/routes"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,7 +9,7 @@ import (
 // ------------------------------
 // Initializes the Gin Router Server
 // ------------------------------
-func IntializeRouter() *gin.Engine {
+func IntializeRouter() (*gin.Engine, *gin.RouterGroup) {
 	router := gin.Default()
 
 	// Define the /health endpoint
@@ -24,8 +23,5 @@ func IntializeRouter() *gin.Engine {
 	// Group API under /api/v1
 	api := router.Group("/api/v1")
 
-	// Passing router group to routes
-	routes.AdminRoutes(api)
-
-	return router
+	return router, api
 }

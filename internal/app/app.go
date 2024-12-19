@@ -6,6 +6,7 @@ import (
 	"sqlc-demo/internal/core/dbSetup"
 	"sqlc-demo/internal/core/ginSetup"
 	"sqlc-demo/internal/pkg"
+	"sqlc-demo/internal/pkg/routes"
 )
 
 // ------------------------------------------------------------------------------------------
@@ -29,7 +30,10 @@ func StartApp() error {
 	pkg.SetDB(db)
 
 	// Initializing Gin Router web Server
-	router := ginSetup.IntializeRouter()
+	router, RouterGroup := ginSetup.IntializeRouter()
+
+	// Passing router group to routes
+	routes.AdminRoutes(RouterGroup)
 
 	// Start the web server on port 8080
 	log.Println("Starting the web server on port 8080")
