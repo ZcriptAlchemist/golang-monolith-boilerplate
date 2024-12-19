@@ -27,10 +27,12 @@ air
 - Installing Goose
 ```bash
 go install github.com/pressly/goose/v3/cmd/goose@latest
+```
 
 - Load Environment Variables
 ```bash
 source .env
+```
 
 - Create a Migration script
 ```bash
