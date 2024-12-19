@@ -22,3 +22,25 @@ go mod tidy
 ```bash
 air
 ```
+### Goose CLI Commands
+
+- Installing Goose
+```bash
+go install github.com/pressly/goose/v3/cmd/goose@latest
+
+- Load Environment Variables
+```bash
+source .env
+
+- Create a Migration script
+```bash
+goose -dir $GOOSE_MIGRATIONS_DIR create file_name sql
+```
+- Run Migrations (Up)
+```bash
+goose -dir $GOOSE_MIGRATIONS_DIR $GOOSE_DRIVER "$GOOSE_DBSTRING" up
+```
+- Rollback Migrations (Down)
+```bash
+goose -dir $GOOSE_MIGRATIONS_DIR $GOOSE_DRIVER "$GOOSE_DBSTRING" down
+```
