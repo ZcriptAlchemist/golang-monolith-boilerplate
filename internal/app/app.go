@@ -2,11 +2,11 @@ package app
 
 import (
 	"log"
+	"sqlc-demo/internal"
 	"sqlc-demo/internal/core/config"
 	"sqlc-demo/internal/core/dbSetup"
 	"sqlc-demo/internal/core/ginSetup"
-	"sqlc-demo/internal/pkg"
-	"sqlc-demo/internal/pkg/routes"
+	"sqlc-demo/internal/router"
 )
 
 // ------------------------------------------------------------------------------------------
@@ -26,18 +26,19 @@ func StartApp() error {
 		log.Println(err)
 	}
 
-	// Passing db instance into pkg for using db operations
-	pkg.SetDB(db)
+	// Passing db instance into internal for using db operations
+	internal.SetDB(db)
 
 	// Initializing Gin Router web Server
-	router, RouterGroup := ginSetup.IntializeRouter()
+	routerInstance, RouterGroup := ginSetup.IntializeRouter()
 
 	// Passing router group to routes
-	routes.AdminRoutes(RouterGroup)
+	router.AdminRoutes(RouterGroup)
+	router.MerchantRoutes(RouterGroup)
 
 	// Start the web server on port 8080
 	log.Println("Starting the web server on port 8080")
-	router.Run(":" + cfg.Port)
+	routerInstance.Run(":" + cfg.Port)
 
 	return nil
 }
