@@ -3,9 +3,8 @@ package app
 import (
 	"log"
 	"sqlc-demo/internal"
-	"sqlc-demo/internal/core/config"
-	"sqlc-demo/internal/core/dbSetup"
-	"sqlc-demo/internal/core/ginSetup"
+
+	"sqlc-demo/internal/core"
 	"sqlc-demo/internal/router"
 )
 
@@ -14,14 +13,14 @@ import (
 // ------------------------------------------------------------------------------------------
 func StartApp() error {
 	// Loads environment variable from .env
-	err := config.LoadConfig()
+	err := core.LoadConfig()
 	if err != nil {
 		return err
 	}
 	// Fetching config environment variables struct
-	cfg := config.GlobalAppConfig
+	cfg := core.GlobalAppConfig
 	// Connect to DB
-	db, err := dbSetup.StartDB(cfg.DBString)
+	db, err := core.StartDB(cfg.DBString)
 	if err != nil {
 		log.Println(err)
 	}
@@ -30,7 +29,7 @@ func StartApp() error {
 	internal.SetDB(db)
 
 	// Initializing Gin Router web Server
-	routerInstance, RouterGroup := ginSetup.IntializeRouter()
+	routerInstance, RouterGroup := core.IntializeRouter()
 
 	// Passing router group to routes
 	router.AdminRoutes(RouterGroup)

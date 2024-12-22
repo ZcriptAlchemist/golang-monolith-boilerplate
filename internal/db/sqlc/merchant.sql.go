@@ -44,6 +44,7 @@ func (q *Queries) ListAllMerchants(ctx context.Context) ([]Merchant, error) {
 			&i.ID,
 			&i.Name,
 			&i.Email,
+			&i.PartnerID,
 			&i.CreatedAt,
 		); err != nil {
 			return nil, err

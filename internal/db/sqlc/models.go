@@ -40,3 +40,11 @@ type Payout struct {
 	TransactionStatus string
 	CreatedAt         pgtype.Timestamp
 }
+
+type StatusCheck struct {
+	ID                int32
+	Crn               pgtype.Int4
+	AccountNumber     string
+	TransactionStatus string
+	CreatedAt         pgtype.Timestamp
+}
