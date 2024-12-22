@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println("okay okay")
+	fmt.Println("Unbadged Server!!")
 	err := app.StartApp()
 	if err != nil {
 		log.Println(err.Error())
