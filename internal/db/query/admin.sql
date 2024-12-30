@@ -7,3 +7,5 @@ INSERT INTO admins (
 
 -- name: ListAdmins :many
 SELECT * FROM admins ORDER BY id ASC;
+
+SELECT 

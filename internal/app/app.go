@@ -19,6 +19,7 @@ func StartApp() error {
 	}
 	// Fetching config environment variables struct
 	cfg := core.GlobalAppConfig
+
 	// Connect to DB
 	db, err := core.StartDB(cfg.DBString)
 	if err != nil {
@@ -37,7 +38,10 @@ func StartApp() error {
 
 	// Start the web server on port 8080
 	log.Println("Starting the web server on port 8080")
-	routerInstance.Run(":" + cfg.Port)
+	err = routerInstance.Run(":" + cfg.Port)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

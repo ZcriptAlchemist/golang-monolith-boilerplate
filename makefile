@@ -46,3 +46,6 @@ gooseUp:
 # // note - these goose commands fetch directory path, driver, DB connection string from .env. For more customized migrations use custom goose commands as per your needs
 gooseDown:
 	source .env && goose -dir $$GOOSE_MIGRATION_DIR $$GOOSE_DRIVER "$$GOOSE_DBSTRING" down
+
+test:
+	go test ./...
