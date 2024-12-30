@@ -7,9 +7,10 @@ import (
 )
 
 func main() {
-	fmt.Println("Unbadged Server!!")
+	fmt.Println("testing linter")
 	err := app.StartApp()
-	if err != nil {
-		log.Println(err.Error())
-	}
+	log.Println(err)
+	// if err != nil {
+	// 	log.Println(err.Error())
+	// }
 }
